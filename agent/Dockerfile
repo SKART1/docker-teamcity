@@ -2,8 +2,11 @@ FROM java:8-jdk
 
 MAINTAINER Antonio Alonso Dominguez "alonso@codenibbles.com"
 
+ENV DEBIAN_FRONTEND noninteractive
 ENV TEAMCITY_VERSION 9.0.4
 ENV TEAMCITY_AGENT_HOME /opt/lib/teamcity-agent
+
+
 
 RUN mkdir -p /etc/teamcity-agent
 
@@ -17,6 +20,11 @@ RUN mkdir -p /opt/lib && \
     rm -f $TEAMCITY_AGENT_HOME/conf/buildAgent.properties && \
     ln -s /etc/teamcity-agent/buildAgent.properties $TEAMCITY_AGENT_HOME/conf/buildAgent.properties && \
     rm -fR /tmp/*
+
+#Android sdk
+ENV ANDROID_SDK_URL http://dl.google.com/android/android-sdk_r24.0.2-linux.tgz
+RUN curl -L ${ANDROID_SDK_URL} | tar xz -C /usr/local
+ENV ANDROID_HOME /usr/local/android-sdk-linux
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
