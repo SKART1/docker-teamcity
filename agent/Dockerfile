@@ -26,6 +26,9 @@ ENV ANDROID_SDK_URL http://dl.google.com/android/android-sdk_r24.0.2-linux.tgz
 RUN curl -L ${ANDROID_SDK_URL} | tar xz -C /usr/local
 ENV ANDROID_HOME /usr/local/android-sdk-linux
 
+COPY update-android-sdk.sh /
+RUN /update-android-sdk.sh
+
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
 EXPOSE 9090
