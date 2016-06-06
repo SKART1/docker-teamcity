@@ -33,6 +33,13 @@ ENV ANDROID_SDK_URL http://dl.google.com/android/${ANDROID_SDK_FILENAME}
 ENV ANDROID_HOME /opt/android-sdk-linux
 ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
+##Packages for sdk
+RUN dpkg --add-architecture i386 \
+    && apt-get update \
+    && apt-get install -y software-properties-common libncurses5:i386 libstdc++6:i386 zlib1g:i386 expect wget curl git build-essential \
+    && apt-get update \
+    && apt-get autoclean
+
 RUN cd /opt && \
     wget -q ${ANDROID_SDK_URL} && \
     tar -xzf ${ANDROID_SDK_FILENAME} && \
