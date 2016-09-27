@@ -3,7 +3,7 @@ FROM java:8-jdk
 MAINTAINER Antonio Alonso Dominguez "alonso@codenibbles.com"
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV TEAMCITY_VERSION 9.0.4
+ENV TEAMCITY_VERSION 9.1.6
 ENV TEAMCITY_AGENT_HOME /opt/lib/teamcity-agent
 
 
@@ -23,8 +23,8 @@ RUN mkdir -p /opt/lib && \
 
 #Android sdk
 ENV ANDROID_SDK_VERSION r24.4.1
-ENV ANDROID_BUILD_TOOLS_VERSION 22.0.1
-ENV ANDROID_API_LEVELS android-20,android-21,android-22,android-23
+ENV ANDROID_BUILD_TOOLS_VERSION 24.0.2
+ENV ANDROID_API_LEVELS android-20,android-21,android-22,android-23,android-24
 ENV EXTRA_PACKAGES build-tools-23.0.3
 
 ENV ANDROID_SDK_FILENAME android-sdk_${ANDROID_SDK_VERSION}-linux.tgz
